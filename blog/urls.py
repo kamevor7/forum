@@ -19,6 +19,8 @@ urlpatterns = [
     path('<int:blogs_id>/', views.detail, name='detail'),
     path('add_post/', views.add_post, name='add_post'),
     path('profile/', views.profile, name='profile'),
+    path('blog/<int:pk>/edit/', views.post_edit, name='post_edit'),
+    path('blog/<int:pk>/delete/', views.post_delete, name='post_delete'),
     path('climbing_areas/', views.climbing_areas, name='climbing_areas'),
-    path('add_climbing_area_post/', views.add_climbing_area_post, name='add_climbing_area_post')
+    path('add_climbing_area_post/', views.add_climbing_area_post, name='add_climbing_area_post'),
 ]

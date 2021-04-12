@@ -179,12 +179,35 @@ def add_post(request):
         if form.is_valid():
             post = form.save()
             post.publication_date = timezone.now()
+            post.save()
             return redirect('blog')
         else:
             messages.error(request, 'Please correct the error below.')
     else:
         form = BlogForm()
     return render(request, 'blog/add_post.html', {'form': form})
+
+
+@login_required()
+def post_edit(request, pk):
+    post = get_object_or_404(Blog, pk=pk)
+    if request.method == 'POST':
+        form = BlogForm(request.POST, instance=post)
+        if form.is_valid():
+            post = form.save()
+            post.publication_date = timezone.now()
+            post.save()
+            return render(request, 'blog/blog_list.html', {'posts': post})
+    else:
+        form = BlogForm(instance=post)
+        return render(request, 'blog/edit_post.html', {'form': form})
+
+
+@login_required()
+def post_delete(request, pk):
+    post = get_object_or_404(Blog, pk=pk)
+    post.delete()
+    return redirect('blog')
 
 
 def climbing_areas(request):

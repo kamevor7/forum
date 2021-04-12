@@ -21,6 +21,12 @@
                         - {{ posts.author.first_name }},
                         {{ posts.author.last_name }}
                     </h6>
+                    [<a href="{% url 'post_edit' pk=posts.pk %}">Edit</a>]
+                    [<a href="{% url 'post_delete' pk=posts.pk %}"
+                    onclick="return confirm('Are you sure you want to delete?')">
+                    Delete
+                    </a>]
+                    <br>
                     {{ posts.pub_date }}<br>
                     {{ posts.summary }}
                 </li>
