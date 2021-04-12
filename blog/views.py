@@ -11,8 +11,8 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views import generic
 
-from blog.form import BlogForm
-from blog.models import Blog
+from blog.form import BlogForm, ClimbingAreaForm
+from blog.models import Blog, ClimbingAreas
 
 
 def index(request):
@@ -185,3 +185,22 @@ def add_post(request):
     else:
         form = BlogForm()
     return render(request, 'blog/add_post.html', {'form': form})
+
+
+def climbing_areas(request):
+    post = ClimbingAreas.objects.all()
+    return render(request, 'blog/climbing_areas.html', {'post': post})
+
+
+def add_climbing_area_post(request):
+    if request.method == 'POST':
+        form = ClimbingAreaForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+            return redirect('climbing_areas')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        form = ClimbingAreaForm()
+        return render(request, 'blog/climbing_areas.html', {'form': form})

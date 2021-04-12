@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Climbing Areas</title>
+{% endblock %}
+{% block content %}
+    <div class="colSM pt-lg-5 mr-auto">
+        <h1 class="fw-light"><em>Climbing Area Posts</em></h1>
+        <a href="{% url 'add_climbing_area_post' %}"
+        style="text-decoration:none">
+            Click Here to add a post!
+        </a>
+        <hr>
+        <ul>
+            {% for posts in post %}
+                <li>
+                    <h6>
+                        <a href="{% url 'detail' posts.id %}">
+                            {{ posts.title }}
+                        </a>
+                    </h6>
+                    {{ posts.content }}<br>
+                    {{ posts.location }}<br>
+                    {{ posts.number_of_routes }}<br>
+                </li>
+                <br>
+            {% endfor %}
+        </ul>
+
+    </div>
+    <div class="row pt-lg-3">
+        <p>
+            <a href="{% url 'add_climbing_area_post' %}"
+               class="btn btn-primary">
+                New Post
+            </a>
+        </p>
+    </div>
+{% endblock %}

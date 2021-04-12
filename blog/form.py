@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 from blog.models import Blog
+from blog.models import ClimbingAreas
 
 
 class EditProfileForm(UserChangeForm):
@@ -24,4 +25,15 @@ class BlogForm(forms.ModelForm):
             'title',
             'author',
             'content',
+        )
+
+
+class ClimbingAreaForm(forms.ModelForm):
+    class Meta:
+        model = ClimbingAreas
+        fields = (
+            'title',
+            'location',
+            'content',
+            'number_of_routes',
         )
