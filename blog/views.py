@@ -203,4 +203,4 @@ def add_climbing_area_post(request):
             messages.error(request, 'Please correct the error below.')
     else:
         form = ClimbingAreaForm()
-        return render(request, 'blog/climbing_areas.html', {'form': form})
+        return render(request, 'blog/add_climbing_area_post.html', {'form': form})
