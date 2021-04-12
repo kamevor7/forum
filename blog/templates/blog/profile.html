@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    {% if user.is_authenticated %}
+        <title>{{ user.first_name }} {{ user.last_name }}</title>
+    {% endif %}
+{% endblock %}
+{% block content %}
+    <div class="row pt-lg-5">
+        <h1>
+            My Profile
+        </h1>
+        <hr>
+    </div>
+    <div class="row pt-lg-3">
+        <div class="col-md-5 pt-lg-4">
+            <table class="table table-bordered">
+                <tr>
+                    <td><strong>Username</strong></td>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Email Address</strong></td>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Date Joined</strong></td>
+                    <td>{{ user.date_joined }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Last Login</strong></td>
+                    <td>{{ user.last_login }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-3 offset-md-3">
+            <div class="row">
+                <img src="{{ user.users.avatar.url }}" alt=""
+                width="10" height="150">
+            </div>
+            <div class="row pt-lg-3">
+                <p class="text-center">
+                    <strong>
+                        {{ user.last_name }}, {{ user.first_name }}
+                    </strong>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row pt-lg-4">
+        <hr>
+        <p>
+            <span>
+                <a href="{% url 'change_password' %}"
+                   class="btn btn-secondary">
+                    Change My Password
+                </a>
+            </span>
+            <span>
+                <a href="{% url 'edit_profile' %}"
+                   class="btn btn-secondary">
+                    Update My Infos
+                </a>
+            </span>
+        </p>
+    </div>
+{% endblock %}

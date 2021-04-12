@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Blog</title>
+{% endblock %}
+{% block content %}
+    <div class="colSM pt-lg-5 mr-auto">
+        <h1 class="fw-light"><em>Posts</em></h1>
+        <a href="{% url 'add_post' %}"
+        style="text-decoration:none">
+            add post
+        </a>
+        <hr>
+        <ul>
+            {% for posts in post %}
+                <li>
+                    <h6>
+                        <a href="{% url 'detail' posts.id %}">
+                            {{ posts.title }}
+                        </a>
+                        - {{ posts.author.first_name }},
+                        {{ posts.author.last_name }}
+                    </h6>
+                    {{ posts.pub_date }}<br>
+                    {{ posts.summary }}
+                </li>
+                <br>
+            {% endfor %}
+        </ul>
+
+    </div>
+    <div class="row pt-lg-3">
+        <p>
+            <a href="{% url 'add_post' %}"
+               class="btn btn-primary">
+                New Post
+            </a>
+        </p>
+    </div>
+{% endblock %}

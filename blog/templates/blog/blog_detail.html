@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>{{ post_detail.title }}</title>
+{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-sm-6 pt-lg-5">
+            <h2>
+                {{ post_detail.title }}
+            </h2>
+            <p>
+                {{ post_detail.publication_date }} /
+                {{ post_detail.author.first_name }}
+                {{ post_detail.author.last_name }}
+            </p>
+            <hr>
+            <p>
+                {{ post_detail.content }}
+            </p>
+
+
+        </div>
+    </div>
+    <div class="row pt-lg-5">
+        <p>
+            <span>
+                <a href="{% url 'add_post' %}" class="btn btn-primary">
+                    Add New Post
+                </a>
+            </span>
+            <span>
+                <a href="{% url 'blog' %}"
+                   class="btn btn-secondary">
+                    Back
+                </a>
+            </span>
+        </p>
+    </div>
+{% endblock %}
